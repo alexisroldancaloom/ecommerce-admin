@@ -41,10 +41,9 @@ export default function StoreSwitcher({
     label: item.name,
     value: item.id,
   }));
-  console.log(formattedItems);
 
-  const currentStore = formattedItems.find(
-    (item) => item.value === params.storeId,
+  const [currentStore, setCurrentStore] = useState(
+    formattedItems.find((item) => item.value === params.storeid),
   );
 
   const [open, setOpen] = useState(false);
@@ -52,6 +51,7 @@ export default function StoreSwitcher({
   const onStoreSelect = (store: { value: string; label: string }) => {
     setOpen(false);
     router.push(`/${store.value}`);
+    setCurrentStore(store);
   };
 
   return (
@@ -66,7 +66,7 @@ export default function StoreSwitcher({
           className={cn('w-[200px] justify-between', className)}
         >
           <Store className="mr-2 h-4 w-4" />
-          {formattedItems[0].label}
+          {currentStore?.label}
           <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -75,7 +75,7 @@ export default function StoreSwitcher({
           <CommandList>
             <CommandInput placeholder="Buscar Tienda..." />
             <CommandEmpty>No store found.</CommandEmpty>
-            <CommandGroup heading="Stores">
+            <CommandGroup heading="Tiendas">
               {formattedItems.map((store) => (
                 <CommandItem
                   key={store.value}
