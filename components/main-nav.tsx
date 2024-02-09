@@ -29,6 +29,16 @@ export function MainNav({
       active: pathname === `/${params.storeid}/categories`,
     },
     {
+      href: `/${params.storeid}/sizes`,
+      label: 'Tamaños',
+      active: pathname === `/${params.storeid}/sizes`,
+    },
+    {
+      href: `/${params.storeid}/materials`,
+      label: 'Materiales',
+      active: pathname === `/${params.storeid}/materials`,
+    },
+    {
       href: `/${params.storeid}/settings`,
       label: 'Configuración',
       active: pathname === `/${params.storeid}/settings`,
